@@ -1,0 +1,28 @@
+{
+  "topics": [
+    {
+      "id": 153,
+      "name": "Is there a sex scene?"
+    },
+    {
+      "id": 108,
+      "name": "Is there nudity?"
+    },
+    {
+      "id": 172,
+      "name": "Is someone sexually assaulted?"
+    },
+    {
+      "id": 175,
+      "name": "Is there a sexual assault scene?"
+    },
+    {
+      "id": 10,
+      "name": "Does the dog die?"
+    },
+    {
+      "id": 6,
+      "name": "Is there gun violence?"
+    }
+  ]
+}

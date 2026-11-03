@@ -1,0 +1,37 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/nb3xI8XI3w4pMVZ38VijbsyBqP4.jpg",
+      "genre_ids": [
+        18,
+        36
+      ],
+      "id": 872585,
+      "original_language": "en",
+      "original_title": "Oppenheimer",
+      "overview": "II. Dünya Savaşı sırasında Teğmen General Leslie Groves Jr., fizikçi J. Robert Oppenheimer'ı atom bombasını geliştirmek için gizli bir projede çalışmak üzere atar.",
+      "popularity": 120.5,
+      "poster_path": "/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
+      "release_date": "2023-07-19",
+      "title": "Oppenheimer",
+      "video": false,
+      "vote_average": 8.081,
+      "vote_count": 7421
+    },
+    {
+      "adult": false,
+      "id": 1137498,
+      "original_title": "To End All War: Oppenheimer & the Atomic Bomb",
+      "overview": "",
+      "poster_path": null,
+      "release_date": "2023-07-09",
+      "title": "To End All War: Oppenheimer & the Atomic Bomb",
+      "vote_average": 7.2,
+      "vote_count": 95
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 2
+}

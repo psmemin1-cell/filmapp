@@ -1,0 +1,37 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "id": 122,
+      "original_title": "The Lord of the Rings: The Return of the King",
+      "title": "Yüzüklerin Efendisi: Kralın Dönüşü",
+      "release_date": "2003-12-01",
+      "poster_path": "/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg",
+      "overview": "...",
+      "vote_average": 8.5,
+      "vote_count": 24000
+    },
+    {
+      "id": 120,
+      "original_title": "The Lord of the Rings: The Fellowship of the Ring",
+      "title": "Yüzüklerin Efendisi: Yüzük Kardeşliği",
+      "release_date": "2001-12-18",
+      "poster_path": "/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg",
+      "overview": "...",
+      "vote_average": 8.4,
+      "vote_count": 26000
+    },
+    {
+      "id": 1361,
+      "original_title": "The Lord of the Rings",
+      "title": "Yüzüklerin Efendisi",
+      "release_date": "1978-11-15",
+      "poster_path": "/liW0mjvTyLs7UCumaHhx3PpU4VT.jpg",
+      "overview": "...",
+      "vote_average": 6.6,
+      "vote_count": 900
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 3
+}

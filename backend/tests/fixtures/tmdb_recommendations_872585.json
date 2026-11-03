@@ -1,0 +1,84 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "id": 335984,
+      "title": "Blade Runner 2049",
+      "original_title": "Blade Runner 2049",
+      "release_date": "2017-10-04",
+      "poster_path": "/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg",
+      "vote_average": 7.574,
+      "vote_count": 1000,
+      "media_type": "movie"
+    },
+    {
+      "adult": false,
+      "id": 872585,
+      "title": "Oppenheimer",
+      "original_title": "Oppenheimer",
+      "release_date": "2023-07-19",
+      "poster_path": "/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
+      "vote_average": 8.1,
+      "vote_count": 1000,
+      "media_type": "movie"
+    },
+    {
+      "adult": false,
+      "id": 157336,
+      "title": "Yıldızlararası",
+      "original_title": "Yıldızlararası",
+      "release_date": "2014-11-05",
+      "poster_path": "/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+      "vote_average": 8.4,
+      "vote_count": 1000,
+      "media_type": "movie"
+    },
+    {
+      "adult": false,
+      "id": 27205,
+      "title": "Başlangıç",
+      "original_title": "Başlangıç",
+      "release_date": "2010-07-15",
+      "poster_path": "/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg",
+      "vote_average": 8.369,
+      "vote_count": 1000,
+      "media_type": "movie"
+    },
+    {
+      "adult": false,
+      "id": 374720,
+      "title": "Dunkirk",
+      "original_title": "Dunkirk",
+      "release_date": "2017-07-19",
+      "poster_path": "/b4Oe15CGLL61Ped0RAS9JpqdmCt.jpg",
+      "vote_average": 7.5,
+      "vote_count": 1000,
+      "media_type": "movie"
+    },
+    {
+      "adult": false,
+      "id": 577922,
+      "title": "Tenet",
+      "original_title": "Tenet",
+      "release_date": "2020-08-22",
+      "poster_path": "/k68nPLbIST6NP96JmTxmZijEvCA.jpg",
+      "vote_average": 7.2,
+      "vote_count": 1000,
+      "media_type": "movie"
+    },
+    {
+      "adult": false,
+      "id": 1124,
+      "title": "Prestij",
+      "original_title": "Prestij",
+      "release_date": "2006-10-17",
+      "poster_path": "/tRNlZbgNCNOpLpbPEz5L8G8A0JN.jpg",
+      "vote_average": 8.2,
+      "vote_count": 1000,
+      "media_type": "movie"
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 7
+}

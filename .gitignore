@@ -1,0 +1,34 @@
+# --- Secrets ---
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# --- Android / Gradle ---
+.gradle/
+build/
+local.properties
+.idea/
+*.iml
+captures/
+.externalNativeBuild/
+.cxx/
+.kotlin/
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.vscode/

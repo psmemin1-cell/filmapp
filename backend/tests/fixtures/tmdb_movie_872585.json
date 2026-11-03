@@ -1,0 +1,21 @@
+{
+  "adult": false,
+  "id": 872585,
+  "imdb_id": "tt15398776",
+  "original_title": "Oppenheimer",
+  "title": "Oppenheimer",
+  "overview": "II. Dünya Savaşı sırasında Teğmen General Leslie Groves Jr., fizikçi J. Robert Oppenheimer'ı atom bombasını geliştirmek için gizli bir projede çalışmak üzere atar.",
+  "poster_path": "/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
+  "release_date": "2023-07-19",
+  "runtime": 181,
+  "status": "Released",
+  "vote_average": 8.081,
+  "vote_count": 7421,
+  "external_ids": {
+    "imdb_id": "tt15398776",
+    "wikidata_id": "Q108839994",
+    "facebook_id": "OppenheimerMovie",
+    "instagram_id": "oppenheimermovie",
+    "twitter_id": "OppenheimerFilm"
+  }
+}

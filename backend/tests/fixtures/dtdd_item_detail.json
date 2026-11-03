@@ -1,0 +1,43 @@
+{
+  "item": {
+    "id": 1013637,
+    "name": "Oppenheimer"
+  },
+  "topicItemStats": [
+    {
+      "topicId": 10,
+      "topicName": "Does the dog die?",
+      "yesSum": 0,
+      "noSum": 420,
+      "numComments": 3
+    },
+    {
+      "topicId": 108,
+      "topicName": "Is there nudity?",
+      "yesSum": 184,
+      "noSum": 31,
+      "numComments": 12
+    },
+    {
+      "topicId": 153,
+      "topicName": "Is there a sex scene?",
+      "yesSum": 201,
+      "noSum": 12,
+      "numComments": 9
+    },
+    {
+      "topicId": 175,
+      "topicName": "Is there a sexual assault scene?",
+      "yesSum": 2,
+      "noSum": 140,
+      "numComments": 1
+    },
+    {
+      "topicId": 6,
+      "topicName": "Is there gun violence?",
+      "yesSum": 5,
+      "noSum": 80,
+      "numComments": 0
+    }
+  ]
+}
