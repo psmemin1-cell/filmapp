@@ -9,8 +9,23 @@ plugins {
     alias(libs.plugins.hilt)
 }
 
+// Telefona kurulacak (release) APK'nın backend adresi. CI'da workflow girdisinden gelir:
+//   ./gradlew assembleRelease -PCINESCOPE_RELEASE_BASE_URL=https://cinescope-api.onrender.com/
+// Sonda "/" yoksa eklenir; http:// kabul edilmez (release'te cleartext kapalı).
 val releaseBaseUrl: String = providers.gradleProperty("CINESCOPE_RELEASE_BASE_URL")
     .getOrElse("https://cinescope.invalid/")
+    .trim()
+    .let { if (it.endsWith("/")) it else "$it/" }
+    .also { require(it.startsWith("https://")) { "CINESCOPE_RELEASE_BASE_URL https:// ile başlamalı: $it" } }
+
+// Kalıcı imza anahtarı (opsiyonel). Tanımlıysa release APK bununla imzalanır; böylece yeni
+// sürümler eski uygulamanın üzerine güncelleme olarak kurulur. Tanımlı değilse debug
+// anahtarıyla imzalanır (kişisel kullanım için yeterli). Bkz. KURULUM.md.
+val releaseKeystorePath: String? = providers.environmentVariable("CINESCOPE_KEYSTORE_PATH").orNull
+val hasReleaseKeystore = releaseKeystorePath != null && file(releaseKeystorePath).exists()
+
+// CI'da her derlemeye artan sürüm kodu verilir (Android güncellemeyi buna göre tanır).
+val ciVersionCode: Int = providers.environmentVariable("GITHUB_RUN_NUMBER").orNull?.toIntOrNull() ?: 1
 
 android {
     namespace = "com.cinescope.app"
@@ -20,9 +35,20 @@ android {
         applicationId = "com.cinescope.app"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = ciVersionCode
+        versionName = "1.0.$ciVersionCode"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        if (hasReleaseKeystore) {
+            create("release") {
+                storeFile = file(releaseKeystorePath!!)
+                storePassword = providers.environmentVariable("CINESCOPE_KEYSTORE_PASSWORD").orNull
+                keyAlias = providers.environmentVariable("CINESCOPE_KEY_ALIAS").orNull
+                keyPassword = providers.environmentVariable("CINESCOPE_KEY_PASSWORD").orNull
+            }
+        }
     }
 
     buildTypes {
@@ -31,12 +57,19 @@ android {
             buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:8000/\"")
         }
         release {
-            isMinifyEnabled = true
+            // R8 küçültme kapalı: cihazda doğrulanmamış bir küçültme kuralı çalışma anında
+            // çökme riski taşır; APK boyutu kişisel kullanım için sorun değil.
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
             )
             buildConfigField("String", "BASE_URL", "\"$releaseBaseUrl\"")
+            signingConfig = if (hasReleaseKeystore) {
+                signingConfigs.getByName("release")
+            } else {
+                signingConfigs.getByName("debug")
+            }
         }
     }
 

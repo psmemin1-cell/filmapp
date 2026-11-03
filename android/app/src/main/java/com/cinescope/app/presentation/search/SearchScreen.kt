@@ -21,6 +21,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -38,6 +41,7 @@ import com.cinescope.app.presentation.components.MovieHeaderCard
 import com.cinescope.app.presentation.components.ShimmerPlaceholder
 import com.cinescope.app.presentation.components.SimilarMoviesRow
 import com.cinescope.app.presentation.components.StreamingRow
+import kotlinx.coroutines.delay
 
 @Composable
 fun SearchScreen(viewModel: SearchViewModel = hiltViewModel()) {
@@ -65,7 +69,7 @@ fun SearchScreen(viewModel: SearchViewModel = hiltViewModel()) {
                     title = stringResource(R.string.state_idle_title),
                     body = stringResource(R.string.state_idle_body),
                 )
-                is SearchUiState.Loading -> ShimmerPlaceholder()
+                is SearchUiState.Loading -> LoadingState(query = current.query)
                 is SearchUiState.NotFound -> MessageState(
                     title = stringResource(R.string.state_not_found),
                     body = stringResource(R.string.state_not_found_hint),
@@ -102,6 +106,32 @@ private fun ResultContent(result: MovieSearchResult, onSimilarClick: (SimilarMov
         item(key = "similar") { SimilarMoviesRow(block = result.similar, onMovieClick = onSimilarClick) }
     }
 }
+
+/** İstek uzarsa (uyuyan sunucu) kullanıcıya neden beklediğini söyler. */
+@Composable
+private fun LoadingState(query: String) {
+    var slow by remember(query) { mutableStateOf(false) }
+    LaunchedEffect(query) {
+        delay(SLOW_LOADING_MS)
+        slow = true
+    }
+    Column {
+        if (slow) {
+            Text(
+                text = stringResource(R.string.state_loading_slow),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 16.dp, end = 16.dp, top = 16.dp),
+            )
+        }
+        ShimmerPlaceholder()
+    }
+}
+
+private const val SLOW_LOADING_MS = 5_000L
 
 @Composable
 private fun MessageState(title: String, body: String) {

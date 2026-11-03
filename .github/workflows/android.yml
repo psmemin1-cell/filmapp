@@ -9,6 +9,11 @@ on:
     paths:
       - "android/**"
   workflow_dispatch:
+    inputs:
+      api_base_url:
+        description: "Telefon APK'sının bağlanacağı backend adresi (ör. https://cinescope-api.onrender.com/). Boşsa CINESCOPE_API_URL repo değişkeni kullanılır."
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -20,6 +25,9 @@ jobs:
     defaults:
       run:
         working-directory: android
+    env:
+      # Öncelik: elle girilen adres > repo değişkeni (Settings → Secrets and variables → Actions → Variables)
+      API_BASE_URL: ${{ inputs.api_base_url || vars.CINESCOPE_API_URL }}
     steps:
       - uses: actions/checkout@v5
 
@@ -30,11 +38,56 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v5
 
+      # Kalıcı imza anahtarı yoksa debug anahtarı kullanılır; onu cache'leyerek her derlemenin
+      # aynı imzayı taşımasını sağlarız (yeni APK eski uygulamanın üzerine güncelleme olarak kurulur).
+      - name: Restore signing key cache
+        uses: actions/cache@v5
+        with:
+          path: ~/.android/debug.keystore
+          key: cinescope-debug-keystore-v1
+
+      - name: Decode release keystore (opsiyonel)
+        env:
+          KEYSTORE_BASE64: ${{ secrets.CINESCOPE_KEYSTORE_BASE64 }}
+        run: |
+          if [ -n "$KEYSTORE_BASE64" ]; then
+            echo "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/release.jks"
+            echo "CINESCOPE_KEYSTORE_PATH=$RUNNER_TEMP/release.jks" >> "$GITHUB_ENV"
+            echo "Release keystore bulundu."
+          else
+            echo "Release keystore tanımlı değil; debug anahtarıyla imzalanacak."
+          fi
+
       - name: Unit tests
         run: ./gradlew testDebugUnitTest -PwarningsAsErrors=true --stacktrace
 
-      - name: Assemble debug APK (Kotlin uyarıları hata sayılır)
+      - name: Assemble debug APK (emülatör, 10.0.2.2)
         run: ./gradlew assembleDebug -PwarningsAsErrors=true --warning-mode all --stacktrace
+
+      - name: Assemble phone APK (release)
+        if: env.API_BASE_URL != ''
+        env:
+          CINESCOPE_KEYSTORE_PASSWORD: ${{ secrets.CINESCOPE_KEYSTORE_PASSWORD }}
+          CINESCOPE_KEY_ALIAS: ${{ secrets.CINESCOPE_KEY_ALIAS }}
+          CINESCOPE_KEY_PASSWORD: ${{ secrets.CINESCOPE_KEY_PASSWORD }}
+        run: |
+          ./gradlew assembleRelease -PwarningsAsErrors=true --warning-mode all --stacktrace \
+            "-PCINESCOPE_RELEASE_BASE_URL=$API_BASE_URL"
+          mv app/build/outputs/apk/release/app-release.apk "app/build/outputs/apk/release/CineScope-${GITHUB_RUN_NUMBER}.apk"
+          {
+            echo "### 📱 Telefon APK'sı hazır"
+            echo ""
+            echo "- Backend: \`$API_BASE_URL\`"
+            echo "- Sürüm: 1.0.${GITHUB_RUN_NUMBER}"
+            echo "- Aşağıdaki **Artifacts** bölümünden \`cinescope-phone-apk\` dosyasını indirin, ZIP'i açın ve APK'yı telefona kurun."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Phone APK skipped (release yalnızca derleme kontrolü)
+        if: env.API_BASE_URL == ''
+        run: |
+          ./gradlew assembleRelease -PwarningsAsErrors=true --warning-mode all --stacktrace
+          echo "### Telefon APK'sı üretilmedi" >> "$GITHUB_STEP_SUMMARY"
+          echo "Backend adresi verilmedi. Actions → Android → Run workflow ile adresi girin veya CINESCOPE_API_URL repo değişkenini tanımlayın." >> "$GITHUB_STEP_SUMMARY"
 
       - uses: actions/upload-artifact@v5
         with:
@@ -42,3 +95,11 @@ jobs:
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 14
+
+      - uses: actions/upload-artifact@v5
+        if: env.API_BASE_URL != ''
+        with:
+          name: cinescope-phone-apk
+          path: android/app/build/outputs/apk/release/CineScope-*.apk
+          if-no-files-found: error
+          retention-days: 30

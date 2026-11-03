@@ -37,6 +37,8 @@ class SearchViewModel @Inject constructor(
     private data class SearchRequest(val query: String, val forced: Boolean)
 
     init {
+        // Kullanıcı yazarken sunucu uyansın (ücretsiz barındırmada ilk istek yavaştır).
+        viewModelScope.launch { repository.warmUp() }
         observeSearches()
     }
 

@@ -1,0 +1,35 @@
+# Render Blueprint: CineScope backend'ini ücretsiz planda yayınlar.
+# Kurulum: https://dashboard.render.com → New → Blueprint → bu repoyu seç.
+# Adım adım rehber: KURULUM.md
+services:
+  - type: web
+    name: cinescope-api
+    runtime: python
+    plan: free
+    region: frankfurt
+    rootDir: backend
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips='*'
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.8"
+      # Anahtarlar Render panelinde girilir; repoya asla yazılmaz.
+      - key: TMDB_API_KEY
+        sync: false
+      - key: DTDD_API_KEY
+        sync: false
+      - key: ENABLE_MOVIE_MAP
+        value: "false"
+      - key: PARENTS_GUIDE_PROVIDER
+        value: scraper
+      - key: CACHE_TTL_SECONDS
+        value: "21600"
+      - key: DEGRADED_CACHE_TTL_SECONDS
+        value: "300"
+      - key: LOG_LEVEL
+        value: INFO
+      # Yalnızca Android istemcisi kullanıldığı için tarayıcı CORS'u kapalı.
+      - key: CORS_ALLOW_ORIGINS
+        value: ""

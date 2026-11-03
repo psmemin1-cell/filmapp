@@ -15,6 +15,7 @@
     <string name="state_not_found_hint">Yazımı kontrol edin veya filmin orijinal adıyla deneyin.</string>
     <string name="state_error_network">Bağlantı kurulamadı. İnternet bağlantınızı kontrol edin.</string>
     <string name="state_error_server">Film servisine şu an ulaşılamıyor. Biraz sonra tekrar deneyin.</string>
+    <string name="state_loading_slow">Sunucu uyanıyor, ilk arama bir dakika kadar sürebilir…</string>
     <string name="state_error_unknown">Beklenmeyen bir hata oluştu.</string>
     <string name="action_retry">Yeniden dene</string>
     <string name="block_no_data">Veri yok</string>

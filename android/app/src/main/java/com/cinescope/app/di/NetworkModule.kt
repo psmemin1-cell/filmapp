@@ -39,10 +39,11 @@ object NetworkModule {
         }
         return OkHttpClient.Builder()
             .addInterceptor(logging)
-            .connectTimeout(10, TimeUnit.SECONDS)
-            // Backend toplam bütçesi 12 sn; üstüne pay bırakılır.
-            .readTimeout(15, TimeUnit.SECONDS)
-            .callTimeout(20, TimeUnit.SECONDS)
+            // Ücretsiz barındırmada uyuyan sunucunun uyanması ~30-60 sn sürebilir; backend'in
+            // kendi toplam bütçesi 12 sn olduğundan uyanık sunucuda yanıt çok daha hızlıdır.
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(70, TimeUnit.SECONDS)
+            .callTimeout(90, TimeUnit.SECONDS)
             .build()
     }
 

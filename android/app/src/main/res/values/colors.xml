@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Yalnızca başlatıcı ikonu için; uygulama içi renkler MaterialTheme'den gelir. -->
+    <color name="ic_launcher_background">#1F2A44</color>
+    <color name="ic_launcher_foreground">#FFC857</color>
+</resources>

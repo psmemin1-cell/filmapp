@@ -24,9 +24,15 @@ class SearchViewModelTest {
 
     private class FakeRepository(var outcome: SearchOutcome = SearchOutcome.NotFound) : MovieRepository {
         val queries = mutableListOf<String>()
+        var warmUps = 0
+
         override suspend fun search(title: String): SearchOutcome {
             queries += title
             return outcome
+        }
+
+        override suspend fun warmUp() {
+            warmUps += 1
         }
     }
 
@@ -77,6 +83,14 @@ class SearchViewModelTest {
         vm.onRetry()
         advanceUntilIdle()
         assertEquals(listOf("Dune", "Dune"), repo.queries)
+    }
+
+    @Test
+    fun `server is warmed up once on start`() = runTest(dispatcher) {
+        val repo = FakeRepository()
+        SearchViewModel(repo)
+        advanceUntilIdle()
+        assertEquals(1, repo.warmUps)
     }
 
     @Test

@@ -4,6 +4,9 @@ import com.cinescope.app.domain.model.MovieSearchResult
 
 interface MovieRepository {
     suspend fun search(title: String): SearchOutcome
+
+    /** Sunucuyu uyandırır; sonuç önemsizdir, hata yutulur. */
+    suspend fun warmUp()
 }
 
 sealed interface SearchOutcome {

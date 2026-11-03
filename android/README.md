@@ -22,10 +22,13 @@ cd android
 ./gradlew testDebugUnitTest
 ```
 
+**Telefona kurulacak APK:** GitHub Actions → *Android* → *Run workflow* → backend adresini girin;
+`cinescope-phone-apk` artifact'i üretilir (ayrıntı: [../KURULUM.md](../KURULUM.md)). Yerelde:
+`./gradlew assembleRelease -PCINESCOPE_RELEASE_BASE_URL=https://...` (yalnızca `https://`).
+
 Debug build `BASE_URL = http://10.0.2.2:8000/` kullanır (emülatörden host makineye). Fiziksel
 cihaz için `app/build.gradle.kts` içindeki debug `buildConfigField` değerini bilgisayarınızın
 yerel IP'si ile değiştirin ve aynı adresi `res/xml/network_security_config.xml`'e ekleyin.
-Release adresi: `-PCINESCOPE_RELEASE_BASE_URL=https://...`.
 
 ## Lisans / attribution
 

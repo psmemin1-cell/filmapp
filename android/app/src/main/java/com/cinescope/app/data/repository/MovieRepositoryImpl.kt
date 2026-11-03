@@ -55,6 +55,18 @@ class MovieRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun warmUp() {
+        val started = System.currentTimeMillis()
+        try {
+            val code = api.health().code()
+            Log.d(TAG, "warmUp status=$code ${System.currentTimeMillis() - started}ms")
+        } catch (e: CancellationException) {
+            throw e
+        } catch (e: IOException) {
+            Log.d(TAG, "warmUp failed: ${e.message}")
+        }
+    }
+
     private companion object {
         const val TAG = "CineScopeRepo"
         const val HTTP_NOT_FOUND = 404

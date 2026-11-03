@@ -8,6 +8,9 @@ raporu** (odak: Sex & Nudity) ve **benzer filmler**.
 | [`backend/`](backend/) | Python 3.12 · FastAPI · httpx · Pydantic v2 | [backend/README.md](backend/README.md) |
 | [`android/`](android/) | Kotlin · Compose · Hilt · Retrofit · kotlinx.serialization · Coil 3 | [android/README.md](android/README.md) |
 
+> **Telefonda kullanmak için:** [KURULUM.md](KURULUM.md) — sunucuyu Render'da ücretsiz yayınlama ve
+> APK'yı telefona kurma adımları.
+
 API sözleşmesi tek doğruluk kaynağıdır: `backend/app/schemas/movie_response.py`. Android DTO'ları
 (`android/app/src/main/java/com/cinescope/app/data/remote/dto/`) alan alan bunun karşılığıdır.
 
