@@ -60,6 +60,10 @@ android {
 kotlin {
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_17)
+        // CI: -PwarningsAsErrors=true ile "uyarısız derleme" kapısı zorlanır.
+        allWarningsAsErrors.set(
+            providers.gradleProperty("warningsAsErrors").map { it.toBoolean() }.orElse(false),
+        )
     }
 }
 
