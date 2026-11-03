@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">CineScope</string>
+
+    <!-- Arama -->
+    <string name="search_placeholder">Film adı yazın…</string>
+    <string name="search_clear">Aramayı temizle</string>
+    <string name="search_icon">Ara</string>
+
+    <!-- Genel durumlar -->
+    <string name="state_idle_title">Bir film arayın</string>
+    <string name="state_idle_body">Puanı, Türkiye\'deki yayın platformlarını, içerik hassasiyeti raporunu ve benzer filmleri tek ekranda görün.</string>
+    <string name="state_loading">Yükleniyor</string>
+    <string name="state_not_found">Bu isimde film bulunamadı</string>
+    <string name="state_not_found_hint">Yazımı kontrol edin veya filmin orijinal adıyla deneyin.</string>
+    <string name="state_error_network">Bağlantı kurulamadı. İnternet bağlantınızı kontrol edin.</string>
+    <string name="state_error_server">Film servisine şu an ulaşılamıyor. Biraz sonra tekrar deneyin.</string>
+    <string name="state_error_unknown">Beklenmeyen bir hata oluştu.</string>
+    <string name="action_retry">Yeniden dene</string>
+    <string name="block_no_data">Veri yok</string>
+    <string name="block_unavailable">Bu kaynağa şu an ulaşılamıyor.</string>
+    <string name="block_not_found">Bu film için kaynakta kayıt bulunmuyor.</string>
+
+    <!-- Künye -->
+    <string name="poster_description">%1$s posteri</string>
+    <string name="runtime_hours_minutes">%1$d sa %2$d dk</string>
+    <string name="runtime_minutes">%1$d dk</string>
+    <string name="rating_badge">%1$s %2$.1f</string>
+    <string name="rating_votes">%1$d oy</string>
+    <string name="rating_missing">Puan yok</string>
+    <string name="cached_label">Önbellekten</string>
+
+    <!-- Yayın platformları -->
+    <string name="streaming_title">Türkiye\'de nerede izlenir?</string>
+    <string name="streaming_flatrate">Abonelikle</string>
+    <string name="streaming_rent">Kirala</string>
+    <string name="streaming_buy">Satın al</string>
+    <string name="streaming_not_available">Türkiye yayın akışında bulunmuyor</string>
+    <string name="streaming_open_tmdb">Tüm seçenekleri TMDB\'de gör</string>
+    <string name="streaming_attribution">Yayın verisi: JustWatch (TMDB üzerinden)</string>
+    <string name="provider_logo_description">%1$s logosu</string>
+
+    <!-- İçerik hassasiyeti -->
+    <string name="advisory_title">İçerik hassasiyeti</string>
+    <string name="advisory_sex_nudity">Cinsellik ve çıplaklık</string>
+    <string name="advisory_votes_total">%1$d oy (IMDb ebeveyn rehberi)</string>
+    <string name="advisory_other_categories">Diğer kategoriler</string>
+    <string name="advisory_community_title">Topluluk yanıtları</string>
+    <string name="advisory_community_empty">Topluluk bu film için cinsellik/çıplaklık sorularını yanıtlamamış.</string>
+    <string name="advisory_community_ratio">%1$s → %%%2$d evet</string>
+    <string name="advisory_community_counts">%1$d evet · %2$d hayır · %3$d yorum</string>
+    <string name="advisory_parents_guide_missing">IMDb ebeveyn rehberi verisi yok.</string>
+
+    <string name="severity_none">Yok</string>
+    <string name="severity_mild">Hafif</string>
+    <string name="severity_moderate">Orta</string>
+    <string name="severity_severe">Şiddetli</string>
+    <string name="severity_unknown">Belirsiz</string>
+    <string name="vote_percent">%%%1$d</string>
+
+    <string name="category_violence">Şiddet</string>
+    <string name="category_profanity">Küfür</string>
+    <string name="category_alcohol">Alkol, uyuşturucu ve sigara</string>
+    <string name="category_frightening">Korkutucu ve yoğun sahneler</string>
+
+    <string name="community_question_nudity">Çıplaklık var mı?</string>
+    <string name="community_question_sex_scene">Seks sahnesi var mı?</string>
+    <string name="community_question_sexual_assault">Cinsel saldırı sahnesi var mı?</string>
+
+    <string name="descriptions_show">Detayları göster</string>
+    <string name="descriptions_hide">Detayları gizle</string>
+    <string name="notes_show">Topluluk notlarını göster</string>
+    <string name="notes_hide">Topluluk notlarını gizle</string>
+
+    <!-- DoesTheDogDie attribution: metin ve adres lisans gereği birebir aynı kalmalı. -->
+    <string name="dtdd_attribution" translatable="false">Powered by DoesTheDogDie.com</string>
+    <string name="dtdd_url" translatable="false">https://www.doesthedogdie.com</string>
+
+    <!-- Benzer filmler -->
+    <string name="similar_title">Benzer filmler</string>
+</resources>
